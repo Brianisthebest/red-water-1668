@@ -3,9 +3,10 @@ require 'rails_helper'
 RSpec.describe 'Dish Show Page' do
   before(:each) do
     @chef_1 = Chef.create!(name: "Chef Boyardee")
+    @chef_2 = Chef.create!(name: "Chef Ramsey")
 
     @dish_1 = @chef_1.dishes.create!(name: "Ravioli", description: "Canned pasta", chef_id: @chef_1.id)
-    @dish_2 = @chef_1.dishes.create!(name: "Spaghetti", description: "Pasta with red sauce", chef_id: @chef_1.id)
+    @dish_2 = @chef_1.dishes.create!(name: "Spaghetti", description: "Pasta with red sauce", chef_id: @chef_2.id)
 
     @ingredient_1 = Ingredient.create!(name: "Pasta", calories: 100)
     @ingredient_2 = Ingredient.create!(name: "Tomato Sauce", calories: 50)
@@ -85,7 +86,19 @@ RSpec.describe 'Dish Show Page' do
       end
     end
 
-    it 'I see the chef name'
+    it 'I see the chef name' do
+      visit dish_path(@dish_1)
+
+      within "#dish-details" do
+        expect(page).to have_content("Chef: Chef Boyardee")
+      end
+     
+      visit dish_path(@dish_2)
+
+      within "#dish-details" do
+        expect(page).to have_content("Chef: Chef Ramsey")
+      end
+    end
 # When I visit a dish's show page
 # I see the dish’s name and description
 # And I see a list of ingredients for that dish
