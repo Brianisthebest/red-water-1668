@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Dish Show Page' do
+RSpec.describe 'Dish Show Page', type: :feature do
   before(:each) do
     @chef_1 = Chef.create!(name: "Chef Boyardee")
     @chef_2 = Chef.create!(name: "Chef Ramsey")
