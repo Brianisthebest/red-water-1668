@@ -19,7 +19,18 @@ RSpec.describe 'Dish Show Page' do
   end
 
   describe 'As a visitor, User Story 1' do
-    it 'I see the dish nam and description'
+    it 'I see the dish nam and description' do
+      visit dish_path(@dish_1)
+
+      expect(page).to have_content("Name: Ravioli")
+      expect(page).to have_content("Description: Canned pasta")
+
+      visit dish_path(@dish_2)
+
+      expect(page).to have_content("Name: Spaghetti")
+      expect(page).to have_content("Description: Pasta with red sauce")
+    end
+    
     it 'I see a list of ingredients for that dish'
     it 'I see the total calorie count for that dish'
     it 'I see the chef name'
