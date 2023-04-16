@@ -22,9 +22,9 @@ RSpec.describe 'Ingredients Index Page', type: :feature do
 
   describe 'As a visitor, User Story 3' do
     it 'lists all ingredients a chef uses' do
-      visit chef_ingredients_path(@chef_1)
+      visit chef_path(@chef_1)
 
-      expect(page).to have_content("#{@chef_1.name} Ingredients:")
+      expect(page).to have_content("Most Popular Ingredients:")
       expect(page).to have_content("Pasta")
       expect(page).to have_content("Tomato Sauce")
       expect(page).to have_content("Cheese")

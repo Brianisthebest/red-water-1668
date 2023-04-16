@@ -48,11 +48,12 @@ require 'rails_helper'
 
   describe 'As a visitor, Extension' do
     it 'lists the three most popular ingredients that the chef uses in their dishes' do
+      visit chef_path(@chef_1)
+
       expect(page).to have_content("Most Popular Ingredients:")
       expect(page).to have_content("Pasta")
       expect(page).to have_content("Tomato Sauce")
       expect(page).to have_content("Meat")
     end
-# (Popularity is based off of how many dishes use that ingredient)
   end
  end
