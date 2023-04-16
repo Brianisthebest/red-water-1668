@@ -14,3 +14,12 @@
    <p>Chef: <%= @dish.chef_name %></p>
   </div>
 </div>
+
+<div id="add-ingredient">
+  <h2>Add an Ingredient to this Dish:</h2>
+  <%= form_with model: @dish, local: true do |form| %>
+    <%= form.label :id  %>
+    <%= form.text_field :id  %>
+    <%= form.submit %>
+  <% end %>
+</div>
