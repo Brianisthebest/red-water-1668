@@ -25,6 +25,7 @@ RSpec.describe 'Dish Show Page' do
 
       expect(page).to have_content("Dish Show Page")
     end
+
     it 'I see the dish nam and description' do
       visit dish_path(@dish_1)
 
@@ -70,38 +71,51 @@ RSpec.describe 'Dish Show Page' do
         expect(page).to have_content("Calories: 300")
       end
     end
-  end
-
+    
     it 'I see the total calorie count for that dish' do
       visit dish_path(@dish_1)
-
+      
       within "#dish-details" do
         expect(page).to have_content("Total Calories: 150")
       end
-
+      
       visit dish_path(@dish_2)
-
+      
       within "#dish-details" do
         expect(page).to have_content("Total Calories: 500")
       end
     end
-
+    
     it 'I see the chef name' do
       visit dish_path(@dish_1)
-
+      
       within "#dish-details" do
         expect(page).to have_content("Chef: Chef Boyardee")
       end
-     
+      
       visit dish_path(@dish_2)
-
+      
       within "#dish-details" do
         expect(page).to have_content("Chef: Chef Ramsey")
       end
     end
-# When I visit a dish's show page
-# I see the dish’s name and description
-# And I see a list of ingredients for that dish
-# and a total calorie count for that dish
-# And I see the chef's name.
+  end
+
+  describe 'As a visitor, User Story 2' do
+    it 'I see a form to add an existing Ingredient to that Dish' do
+      within "#add-ingredient" do
+        expect(page).to have_content("Add an Ingredient to this Dish:")
+        expect(page).to have_field("Ingredient ID")
+      end
+    end
+    it 'when I fill it out and click submit, I am redirected to that dish show page, and I see that ingredient listed'
+
+# I see a form to add an existing Ingredient to that Dish
+# When I fill in the form with the ID of an Ingredient that exists in the database
+# And I click Submit
+# Then I am redirected to that dish's show page
+# And I see that ingredient is now listed. 
+  end
 end
+
+  
