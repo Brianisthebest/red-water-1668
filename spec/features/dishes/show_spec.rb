@@ -107,7 +107,7 @@ RSpec.describe 'Dish Show Page' do
 
       within "#add-ingredient" do
         expect(page).to have_content("Add an Ingredient to this Dish:")
-        expect(page).to have_field("Ingredient ID")
+        expect(page).to have_field("Id")
       end
     end
 
@@ -122,12 +122,6 @@ RSpec.describe 'Dish Show Page' do
       expect(current_path).to eq(dish_path(@dish_1))
       expect(page).to have_content("Cheese")
     end
-
-# I see a form to add an existing Ingredient to that Dish
-# When I fill in the form with the ID of an Ingredient that exists in the database
-# And I click Submit
-# Then I am redirected to that dish's show page
-# And I see that ingredient is now listed. 
   end
 end
 
