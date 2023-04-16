@@ -6,7 +6,7 @@ RSpec.describe Dish, type: :model do
     @chef_2 = Chef.create!(name: "Chef Ramsey")
 
     @dish_1 = @chef_1.dishes.create!(name: "Ravioli", description: "Canned pasta", chef_id: @chef_1.id)
-    @dish_2 = @chef_1.dishes.create!(name: "Spaghetti", description: "Pasta with red sauce", chef_id: @chef_2.id)
+    @dish_2 = @chef_2.dishes.create!(name: "Spaghetti", description: "Pasta with red sauce", chef_id: @chef_2.id)
 
     @ingredient_1 = Ingredient.create!(name: "Pasta", calories: 100)
     @ingredient_2 = Ingredient.create!(name: "Tomato Sauce", calories: 50)
