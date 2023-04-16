@@ -19,19 +19,53 @@ RSpec.describe 'Dish Show Page' do
   end
 
   describe 'As a visitor, User Story 1' do
+    it 'has a header' do
+      visit dish_path(@dish_1)
+
+      expect(page).to have_content("Dish Show Page")
+    end
     it 'I see the dish nam and description' do
       visit dish_path(@dish_1)
 
-      expect(page).to have_content("Name: Ravioli")
-      expect(page).to have_content("Description: Canned pasta")
+      within "#dish-details" do
+        expect(page).to have_content("Name: Ravioli")
+        expect(page).to have_content("Description: Canned pasta")
+      end
 
       visit dish_path(@dish_2)
 
-      expect(page).to have_content("Name: Spaghetti")
-      expect(page).to have_content("Description: Pasta with red sauce")
+      within "#dish-details" do
+        expect(page).to have_content("Name: Spaghetti")
+        expect(page).to have_content("Description: Pasta with red sauce")
+      end
+    end
+
+    it 'I see a list of ingredients for that dish' do
+      visit dish_path(@dish_1)
+
+      expect(page).to have_content("Ingredients:")
+      within "#ingredients-#{@ingredient_1.id}" do
+        expect(page).to have_content("Pasta")
+      end
+
+      within "#ingredients-#{@ingredient_2.id}" do
+        expect(page).to have_content("Tomato Sauce")
+      end
+    end
+
+    it 'I see a list of ingredients for another dish show page' do
+      visit dish_path(@dish_2)
+
+      expect(page).to have_content("Ingredients:")
+      within "#ingredients-#{@ingredient_3.id}" do
+        expect(page).to have_content("Cheese")
+      end
+
+      within "#ingredients-#{@ingredient_4.id}" do
+        expect(page).to have_content("Meat")
+      end
     end
     
-    it 'I see a list of ingredients for that dish'
     it 'I see the total calorie count for that dish'
     it 'I see the chef name'
   end
