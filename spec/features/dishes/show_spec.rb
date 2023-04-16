@@ -40,35 +40,52 @@ RSpec.describe 'Dish Show Page' do
       end
     end
 
-    it 'I see a list of ingredients for that dish' do
+    it 'I see a list of ingredients for that dish, it also shows calories' do
       visit dish_path(@dish_1)
 
       expect(page).to have_content("Ingredients:")
       within "#ingredients-#{@ingredient_1.id}" do
         expect(page).to have_content("Pasta")
+        expect(page).to have_content("Calories: 100")
       end
 
       within "#ingredients-#{@ingredient_2.id}" do
         expect(page).to have_content("Tomato Sauce")
+        expect(page).to have_content("Calories: 50")
       end
     end
 
-    it 'I see a list of ingredients for another dish show page' do
+    it 'I see a list of ingredients for another dish show page, as well as calories' do
       visit dish_path(@dish_2)
 
       expect(page).to have_content("Ingredients:")
       within "#ingredients-#{@ingredient_3.id}" do
         expect(page).to have_content("Cheese")
+        expect(page).to have_content("Calories: 200")
       end
 
       within "#ingredients-#{@ingredient_4.id}" do
         expect(page).to have_content("Meat")
+        expect(page).to have_content("Calories: 300")
       end
     end
-    
-    it 'I see the total calorie count for that dish'
-    it 'I see the chef name'
   end
+
+    it 'I see the total calorie count for that dish' do
+      visit dish_path(@dish_1)
+
+      within "#dish-details" do
+        expect(page).to have_content("Total Calories: 150")
+      end
+
+      visit dish_path(@dish_2)
+
+      within "#dish-details" do
+        expect(page).to have_content("Total Calories: 500")
+      end
+    end
+
+    it 'I see the chef name'
 # When I visit a dish's show page
 # I see the dish’s name and description
 # And I see a list of ingredients for that dish

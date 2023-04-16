@@ -7,8 +7,9 @@
   <% @dish.ingredients.each do |ingredient| %>
     <div id="ingredients-<%= ingredient.id %>">
     <ul>
-      <li><%= ingredient.name %></li>
+      <li><%= ingredient.name %> Calories: <%= ingredient.calories %></li>
     </ul>
     <% end %>
+   <p>Total Calories: <%= @dish.total_calories %></p>
   </div>
 </div>

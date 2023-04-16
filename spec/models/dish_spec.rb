@@ -17,7 +17,7 @@ RSpec.describe Dish, type: :model do
     @dish_ingredient_1 = DishIngredient.create!(dish_id: @dish_2.id, ingredient_id: @ingredient_3.id)
     @dish_ingredient_1 = DishIngredient.create!(dish_id: @dish_2.id, ingredient_id: @ingredient_4.id)
   end
-  
+
   describe "validations" do
     it {should validate_presence_of :name}
     it {should validate_presence_of :description}
@@ -27,5 +27,14 @@ RSpec.describe Dish, type: :model do
     it {should belong_to :chef}
     it {should have_many :dish_ingredients}
     it {should have_many(:ingredients).through(:dish_ingredients)}
+  end
+
+  describe "#instance methods" do
+    describe "#total_calories" do
+      it 'returns the total calories for a dish' do
+        expect(@dish_1.total_calories).to eq(150)
+        expect(@dish_2.total_calories).to eq(500)
+      end
+    end
   end
 end
